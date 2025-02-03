@@ -19,7 +19,6 @@ public class Prodotto {
     private String descrizione;
     private double prezzo;
     private double iva;
-    private String error;
     
     public Prodotto(String nome, double prezzo, double iva) {
         generaCodice();
