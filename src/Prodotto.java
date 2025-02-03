@@ -22,19 +22,6 @@ public class Prodotto {
     private String error;
     
     public Prodotto(String nome, double prezzo, double iva) {
-        /*if(nome != null){
-            this.nome = nome;
-        }
-        if(prezzo > 0){
-            this.prezzo = prezzo;
-        }else{
-            System.out.println("Inserire un prezzo valido maggiore di zero");
-        }
-        if(iva == 4 || iva == 10 || iva == 22){
-            this.iva = iva;
-        }else{
-            System.out.println("Iva non valida");
-        }*/
         generaCodice();
         getError(nome, prezzo, iva);
     }
