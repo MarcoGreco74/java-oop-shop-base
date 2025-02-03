@@ -18,32 +18,36 @@ import java.util.Scanner;
 public class UseProdotto {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        Prodotto prodotto = new Prodotto(false,true );
-        
         System.out.println("Inserisci il nome del prodotto");
         String nome = scan.next();
-        prodotto.setNome(nome);
         
         System.out.println("Inserisci il prezzo base del prodotto");
-        double inizializePrezzoBase = scan.nextDouble();
-        prodotto.setPrezzoBase(inizializePrezzoBase); 
-        double prezzoBase = prodotto.getPrezzoBase();
+        double prezzoBase = scan.nextDouble();
+        
+        System.out.println("Inserisci l'iva da applicare");
+        double iva = scan.nextDouble();
+        Prodotto prodotto = new Prodotto(nome, prezzoBase, iva);
+        
+        System.out.println("Descrivi brevemente il prodotto");
+        String inizializeDescrizione = scan.next();
+        prodotto.setDescrizione(inizializeDescrizione);
+        String descrizione = prodotto.getDescrizione();
         
         int codice = prodotto.generaCodice(); 
 
-        double prezzoConIva = prodotto.getPrezzoIva(prezzoBase);
+        double prezzoConIva = prodotto.getPrezzoIva();
 
-        System.out.println("Descrivi brevemente il prodotto");
-        String inizializeDescrizione = scan.next();
+        String nomeEsteso = prodotto.getNomeEsteso(nome, codice);
 
-        prodotto.setDescrizione(inizializeDescrizione);
-        String descrizione = prodotto.getDescrizione();
-        String nomeEsteso = prodotto.getNomeEsteso(prodotto.getNome(), codice);
-        
-        System.out.println("Il nome del prodotto è: "+nomeEsteso);
-        System.out.println("Il codice del prodotto è: "+codice);
-        System.out.println("Il prezzo base del prodotto è: "+prezzoBase);
-        System.out.println("Il prezzo con iva del prodotto è: "+prezzoConIva);
-        System.out.println("la sua descrizione: "+descrizione);
+        if(prodotto.getError(nome, prezzoBase, iva) == true){
+            System.out.println("Il nome del prodotto è: "+nomeEsteso);
+            System.out.println("Il codice del prodotto è: "+codice);
+            System.out.println("Il prezzo base del prodotto è: "+prezzoBase);
+            System.out.println("Il prezzo con iva del prodotto è: "+prezzoConIva);
+            System.out.println("la sua descrizione: "+descrizione);
+        }else{
+            System.out.println("I dati inseriti non sono");
+            //System.out.println(String.format("Il nome del prodotto è %s, il codice è %d, il prezzo base è %f, il prezzo con iva è %f ed è un %s", nomeEsteso, codice, prezzoBase, prezzoConIva, descrizione));
+        }
     }
 }

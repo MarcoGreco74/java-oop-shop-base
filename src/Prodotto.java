@@ -15,45 +15,42 @@ Nella stessa cartella src aggiungete una classe Main con metodo main nella quale
 */
 
 public class Prodotto {
-    private boolean esaurito;
-    private boolean inVendita;
     private String nome;
     private String descrizione;
     private double prezzo;
+    private double iva;
+    private String error;
     
-    public Prodotto(boolean esaurito, boolean inVendita) {
-        this.esaurito = esaurito;
-        this.inVendita = inVendita;
-    }
-    public String getNome(){
-        return this.nome;
-    }
-
-    public void setNome(String nome){
-        this.nome = nome;
+    public Prodotto(String nome, double prezzo, double iva) {
+        /*if(nome != null){
+            this.nome = nome;
+        }
+        if(prezzo > 0){
+            this.prezzo = prezzo;
+        }else{
+            System.out.println("Inserire un prezzo valido maggiore di zero");
+        }
+        if(iva == 4 || iva == 10 || iva == 22){
+            this.iva = iva;
+        }else{
+            System.out.println("Iva non valida");
+        }*/
+        generaCodice();
+        getError(nome, prezzo, iva);
     }
 
     public int generaCodice(){
-        int codice = (int)(Math.random()*100);
+        int codice = (int)(Math.random()*1000);
         return codice;
     }
 
-    public double getPrezzoBase(){
-        return prezzo; 
-    }
-
-    public void setPrezzoBase(double prezzoBase){
-        prezzo = prezzoBase;
-    }
-
-    public double getPrezzoIva(double prezzo){
-        this.prezzo = prezzo;
-        double prezzoConIva = prezzo + (prezzo / 100 * 20);
+    public double getPrezzoIva(){     
+        double prezzoConIva = this.prezzo + (this.prezzo / 100 * this.iva);
         return prezzoConIva;
     }
 
     public String getNomeEsteso(String nome, int codice){
-        String nomeEsteso = this.nome+codice;
+        String nomeEsteso = codice+"-"+this.nome;
         return nomeEsteso;
     }
 
@@ -64,4 +61,20 @@ public class Prodotto {
     public void setDescrizione(String descrizione){
         this.descrizione = descrizione;
     }
+
+    public boolean getError(String nome, double prezzo, double iva){
+        this.nome = nome;
+        this.prezzo = prezzo;
+        this.iva = iva;
+        if(nome != null && prezzo > 0 && (iva == 4 || iva == 10 || iva == 22)){
+            this.nome = nome;
+            this.prezzo = prezzo;
+            this.iva = iva;
+            return true;
+        }else{
+            System.out.println("Dati non corretti");
+            return false;
+        }
+    }
+
 }
