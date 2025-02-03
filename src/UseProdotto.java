@@ -49,5 +49,6 @@ public class UseProdotto {
             System.out.println("I dati inseriti non sono");
             //System.out.println(String.format("Il nome del prodotto è %s, il codice è %d, il prezzo base è %f, il prezzo con iva è %f ed è un %s", nomeEsteso, codice, prezzoBase, prezzoConIva, descrizione));
         }
+        scan.close();
     }
 }

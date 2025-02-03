@@ -49,9 +49,6 @@ public class Prodotto {
     }
 
     public boolean getError(String nome, double prezzo, double iva){
-        this.nome = nome;
-        this.prezzo = prezzo;
-        this.iva = iva;
         if(nome != null && prezzo > 0 && (iva == 4 || iva == 10 || iva == 22)){
             this.nome = nome;
             this.prezzo = prezzo;
